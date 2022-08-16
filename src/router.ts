@@ -1,11 +1,18 @@
-import { Router, Request, Response } from 'express';
-import {getCustomer, postCustomer} from './controller';
-
+import { Router} from 'express';
+import {getCustomer,getIDCustomer, postCustomer, putCustomer,deleteCustomer} from './controller';
+import validate from './middleware/validate';
+import schema from './schema/indexSchema';
 
 const route = Router()
 
 route.get('/', getCustomer)
 
-route.post('/',postCustomer)
+route.get('/:id', getIDCustomer)
+
+route.post('/', validate(schema) ,postCustomer)
+
+route.put('/:id', putCustomer)
+
+route.delete('/:id', deleteCustomer)
 
 export default route;
