@@ -42,8 +42,32 @@ export async function insertCustomer(logradouro: string, numero: number, cidade:
 }
 
 export async function updateCustomer(id:number, customer: string) {
-        
+        const conn = await connect();
+        const sql = 'UPDATE `tb_endereco` SET `logradouro` = ? WHERE `id_endereco` = ?';
+        const value = [customer, id];
+        conn.query(sql,value ,
+            function (err,result, fields) {
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log(result);
+                }
+            })
     }
+
+export async function deleteCustomer(id:number){
+    const conn = await connect();
+    const sql = 'DELETE FROM `tb_endereco` WHERE `id_endereco` = ?';
+    const value = [id];
+    conn.query(sql,value,
+        function(err,result,fields){
+            if(err){
+                console.log(err);
+            }else{
+                console.log(result);
+            }
+        })
+}
        
 
 

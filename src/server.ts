@@ -1,14 +1,19 @@
 import  express  from "express";
 import route from "./router";
-import {connect, selectCustomer, insertCustomer} from "./database/index";
+import {connect, selectCustomer, insertCustomer, updateCustomer, deleteCustomer} from "./database/index";
+
 
 const app = express();
 
 app.use(express.json())
 
 connect();
-selectCustomer();
+// selectCustomer();
 // insertCustomer("Rua teste", 123, "teste");
+// updateCustomer(2, "Rua teste");
+// deleteCustomer(8);
+// connect();
+
 
 app.use(route)
 
